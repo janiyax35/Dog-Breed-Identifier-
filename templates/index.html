@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-Powered Dog Breed Identifier by Janith Deshan">
+    <meta name="author" content="Janith Deshan">
+    
+    <title>Dog Breed Identifier | Janith Deshan</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2527/2527324.png" type="image/png">
+    
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="animated-background">
+        <div class="particle-container"></div>
+        <div class="paw-prints"></div>
+    </div>
+
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="app-header">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <i class="fas fa-paw"></i>
+                        <span>BarkID</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section -->
+            <section id="home" class="hero-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 order-lg-2" data-aos="fade-left" data-aos-duration="1000">
+                            <div class="hero-image">
+                                <img src="https://images.unsplash.com/photo-1628234506867-b9b1af67bc06?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dogs Collage" class="img-fluid rounded-4 shadow">
+                                <div class="floating-icon icon-1"><i class="fas fa-search"></i></div>
+                                <div class="floating-icon icon-2"><i class="fas fa-dog"></i></div>
+                                <div class="floating-icon icon-3"><i class="fas fa-bone"></i></div>
+                                <!--<div class="scan-animation"></div>-->
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-1" data-aos="fade-right" data-aos-duration="1000">
+                            <div class="hero-content">
+                                <h1 class="mb-3">Dog Breed Identifier</h1>
+                                <p class="lead mb-4">Upload an image of any dog and our AI will instantly identify its breed with high accuracy.</p>
+                                <a href="#identifier" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-arrow-right"></i> Try It Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Identifier Section -->
+            <section id="identifier" class="identifier-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="identifier-card" data-aos="zoom-in" data-aos-duration="800">
+                                <div class="card-header">
+                                    <h2><i class="fas fa-microscope"></i> Breed Identifier</h2>
+                                    <p>Upload a dog photo to identify its breed</p>
+                                </div>
+                                <div class="card-body">
+                                    <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
+                                        <div class="upload-container">
+                                            <div class="upload-area">
+                                                <input type="file" name="file" class="file-input" required accept="image/*">
+                                                <div class="upload-content">
+                                                    <div class="upload-icon">
+                                                        <i class="fas fa-cloud-upload-alt"></i>
+                                                    </div>
+                                                    <div class="upload-text">
+                                                        <span>Drag & drop image here or</span>
+                                                        <button type="button" class="browse-btn">Browse Files</button>
+                                                    </div>
+                                                    <p class="upload-info">Supported formats: JPG, PNG, JPEG</p>
+                                                </div>
+                                            </div>
+                                            <div class="selected-file"></div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100 mt-4">
+                                            <i class="fas fa-search"></i> Identify Breed
+                                        </button>
+                                    </form>
+                                    
+                                    {% if prediction %}
+                                    <div class="result-section" data-aos="fade-up">
+                                        <div class="result-header">
+                                            <h3>Analysis Results</h3>
+                                            <div class="analysis-badge">
+                                                <i class="fas fa-check-circle"></i> Analysis Complete
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="result-content">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    {% if uploaded_image %}
+                                                    <div class="result-image">
+                                                        <img src="{{ url_for('uploaded_file', filename=uploaded_image) }}" alt="Uploaded Dog" class="img-fluid rounded">
+                                                        <div class="image-overlay">
+                                                            <div class="scan-line"></div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="result-details">
+                                                        <div class="result-item">
+                                                            <div class="item-label">
+                                                                <i class="fas fa-tag"></i> Breed
+                                                            </div>
+                                                            <div class="item-value prediction-text">
+                                                                {{ prediction }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="result-item">
+                                                            <div class="item-label">
+                                                                <i class="fas fa-chart-pie"></i> Confidence
+                                                            </div>
+                                                            <div class="item-value confidence-text">
+                                                                {{ confidence }}
+                                                                <div class="progress mt-2">
+                                                                    <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="about-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 text-center">
+                            <h2 data-aos="fade-up">How It Works</h2>
+                            <p class="section-lead" data-aos="fade-up" data-aos-delay="100">
+                                Our AI-powered system uses advanced machine learning to identify dog breeds with high accuracy
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-5">
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-upload"></i>
+                                </div>
+                                <h3>Upload</h3>
+                                <p>Upload a clear photo of any dog you want to identify</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h3>Analyze</h3>
+                                <p>Our AI model analyzes the image using a trained neural network</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3>Identify</h3>
+                                <p>Get accurate results identifying the breed from 120+ possibilities</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-5">
+                        <div class="col-12 text-center">
+                            <div class="tech-badge" data-aos="fade-up" data-aos-delay="500">
+                                <span>Powered by</span>
+                                <i class="fab fa-python"></i>
+                                <i class="fab fa-tensorflow"></i>
+                                <span>ResNet50V2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer id="contact" class="footer-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="footer-about" data-aos="fade-right">
+                            <div class="footer-logo">
+                                <i class="fas fa-paw"></i>
+                                <span>BarkID</span>
+                            </div>
+                            <p>A machine learning project by Janith Deshan that combines computer vision and AI to identify dog breeds from images.</p>
+                            <div class="tech-stack">
+                                <span>Built with:</span>
+                                <i class="fab fa-python" title="Python"></i>
+                                <i class="fab fa-js" title="JavaScript"></i>
+                                <i class="fab fa-html5" title="HTML5"></i>
+                                <i class="fab fa-css3-alt" title="CSS3"></i>
+                                <i class="fab fa-bootstrap" title="Bootstrap"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="footer-links" data-aos="fade-up">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#home"><i class="fas fa-angle-right"></i> Home</a></li>
+                                <li><a href="#identifier"><i class="fas fa-angle-right"></i> Identifier</a></li>
+                                <li><a href="#about"><i class="fas fa-angle-right"></i> How It Works</a></li>
+                                <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="developer-info" data-aos="fade-left">
+                            <h4>Developer</h4>
+                            <div class="dev-profile">
+                                <div class="dev-avatar">
+                                    
+                                <img src="https://media.licdn.com/dms/image/v2/D5603AQFe36YhzqzMsg/profile-displayphoto-shrink_200_200/B56ZdG1wr1HEAg-/0/1749240188269?e=1758153600&v=beta&t=xQvzjL6ufTqsyY9K9ylysvZkAs-O_XQAOBLjQAgJPvQ" alt="Janith Deshan" class="img-fluid rounded-circle">
+
+                                </div>
+                                <div class="dev-details">
+                                    <h5>Janith Deshan</h5>
+                                    <p>AI & Machine Learning Developer</p>
+                                </div>
+                            </div>
+                            <div class="social-links">
+                                <a href="mailto:janithmihijaya123@gmail.com" title="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://www.facebook.com/janith.deshan.186" target="_blank" title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/janithdeshan/" target="_blank" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://github.com/janiyax35" target="_blank" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://www.instagram.com/janith_deshan11/" target="_blank" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>&copy; 2025 Dog Breed Identifier by Janith Deshan. All rights reserved.</p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <p id="current-time">2025-08-20 19:12:13 UTC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+</body>
+</html>
