@@ -1,0 +1,12 @@
+# Core Web Framework
+Flask==3.0.0
+werkzeug==3.0.1
+
+# Deep Learning and Model Serving
+tensorflow==2.16.1
+
+# Image Processing
+Pillow==10.2.0
+
+# Numerical Operations
+numpy==1.26.4
