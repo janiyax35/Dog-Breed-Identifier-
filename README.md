@@ -114,6 +114,15 @@ dog_breed_webapp/
 git clone https://github.com/janiyax35/dog-breed-identifier.git
 cd dog-breed-identifier
 ```
+## Model Files
+
+This project uses two model files (~100MB each) hosted on Hugging Face:
+- `dog_breed_model_weights.weights.h5`: The breed classifier model
+- `gatekeeper_v2_weights.weights.h5`: The gatekeeper model
+
+```bash
+https://huggingface.co/JanithDeshan/dog-breed-identifier/tree/main
+```
 
 ### 3. Create a Virtual Environment (Recommended)
 ```bash
