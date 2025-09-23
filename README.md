@@ -180,6 +180,7 @@ The models were trained in Google Colab notebooks using TensorFlow and TensorFlo
   <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/fc2abbb5ebcce37ca74cf22a8c4d436b24332482/assets/02.png" alt="Application Screenshot" width="700"/>
   <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/fc2abbb5ebcce37ca74cf22a8c4d436b24332482/assets/03.png" alt="Application Screenshot" width="700"/>
   <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/fc2abbb5ebcce37ca74cf22a8c4d436b24332482/assets/04.png" alt="Application Screenshot" width="700"/>
+  <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/fc2abbb5ebcce37ca74cf22a8c4d436b24332482/assets/05.png" alt="Application Screenshot" width="700"/>
 </div>
 </details>
 
