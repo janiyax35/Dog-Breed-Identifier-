@@ -173,6 +173,15 @@ The models were trained in Google Colab notebooks using TensorFlow and TensorFlo
   - **Positive Class**: Images from stanford_dogs.
   - **Negative Class**: A mix of "easy" negatives (tf_flowers) and "hard" negatives (cats_vs_dogs).
 
+## 🚀 Click to expand see screen shots
+<details>
+<div align="center">
+  <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/fc2abbb5ebcce37ca74cf22a8c4d436b24332482/assets/01.png" alt="Application Screenshot" width="700"/>
+  <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/fc2abbb5ebcce37ca74cf22a8c4d436b24332482/assets/02.png" alt="Application Screenshot" width="700"/>
+  <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/fc2abbb5ebcce37ca74cf22a8c4d436b24332482/assets/03.png" alt="Application Screenshot" width="700"/>
+  <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/fc2abbb5ebcce37ca74cf22a8c4d436b24332482/assets/04.png" alt="Application Screenshot" width="700"/>
+</div>
+</details>
 
 ## 🔮 Future Improvements
 
@@ -193,7 +202,7 @@ The models were trained in Google Colab notebooks using TensorFlow and TensorFlo
 ## 👨‍💻 About the Developer
 
 <div align="center">
-  <img src="https://avatars.githubusercontent.com/u/placeholder" width="100px" style="border-radius:50%;" alt="Developer Avatar" />
+  <img src="https://github.com/janiyax35/Dog-Breed-Identifier-/blob/ec58f4170bdaf45bce1929a237a6c1a01cfc6887/assets/Profile.jpeg" style="border-radius:50%;" alt="Developer Avatar" width="100"/>
   <h3>Janith Deshan</h3>
   <p>AI & Machine Learning Developer</p>
   
